@@ -57,5 +57,26 @@ class ExtensionsTest < Test::Unit::TestCase
       end
     end
     
+    it 'defines Date#this_week' do
+      assert Date.new.respond_to?(:this_week)
+    end
+    
+    describe 'Date#this_week' do
+      it 'returns a range of days for this week' do
+        date = Date.new(2010, 8, 7)
+        assert_equal Range, date.this_week.class
+      end
+      
+      it 'returns a range including all days for this week' do
+        date = Date.new(2010, 8, 7)
+        assert date.this_week.include?(Date.new(2010, 8, 2))
+        assert date.this_week.include?(Date.new(2010, 8, 3))
+        assert date.this_week.include?(Date.new(2010, 8, 4))
+        assert date.this_week.include?(Date.new(2010, 8, 5))
+        assert date.this_week.include?(Date.new(2010, 8, 6))
+        assert date.this_week.include?(Date.new(2010, 8, 7))
+        assert date.this_week.include?(Date.new(2010, 8, 8))
+      end
+    end
   end
 end

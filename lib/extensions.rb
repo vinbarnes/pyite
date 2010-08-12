@@ -13,6 +13,11 @@ module DateExtensions
   def end_of_work_week
     self.start_of_work_week + 6
   end
+  
+  def this_week
+    start_of_work_week..end_of_work_week
+  end
+  
 end
 
 Date.send(:include, DateExtensions)
