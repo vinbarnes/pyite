@@ -79,4 +79,25 @@ class ExtensionsTest < Test::Unit::TestCase
       end
     end
   end
+
+  describe 'Punch Extensions' do
+    it 'defines Punch.load' do
+      assert Punch.respond_to?(:load)
+    end
+    
+    describe 'redefined Punch.load' do
+      it 'accepts a file argument' do
+        assert_nothing_raised { Punch.load(File.expand_path(File.dirname(__FILE__) + '/test_punch.yml')) }
+      end
+
+      it 'requires a file argument' do
+        assert_raises(ArgumentError) { Punch.load() }
+      end
+
+      it 'loads the provided punch file' do
+        Punch.load(File.expand_path(File.dirname(__FILE__) + '/test_punch.yml'))
+        assert_equal 72000, Punch.total('pet')
+      end
+    end
+  end
 end

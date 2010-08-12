@@ -21,3 +21,18 @@ module DateExtensions
 end
 
 Date.send(:include, DateExtensions)
+
+require 'punch'
+
+class Punch
+  class << self
+    original_load = self.instance_method(:load)
+    # if you want to call the original use:
+    #   original_load.bind(self).call
+  
+    define_method(:load) do |file|
+      raise ArgumentError, 'no filename supplied' unless file
+      @data = YAML.load(File.read(file))
+    end
+  end
+end
