@@ -14,7 +14,7 @@ module DateExtensions
     self.start_of_workweek + 6
   end
   
-  def this_week
+  def this_workweek
     start_of_workweek..end_of_workweek
   end
   

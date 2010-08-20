@@ -7,7 +7,7 @@ class BoxingGlove < Punch
   end
   
   def self.weekly_total(project, date)
-    (date.this_week).map do |day| 
+    (date.this_workweek).map do |day| 
       daily_total(project, day)
     end
   end
