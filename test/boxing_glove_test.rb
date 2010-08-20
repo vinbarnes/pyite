@@ -10,8 +10,6 @@ class BoxingGloveTest < Test::Unit::TestCase
     it 'wraps Punch' do
       assert BoxingGlove.respond_to?(:load)
     end
-    
-    
   end
 
   it 'defines BoxingGlove.daily_total' do
@@ -81,6 +79,5 @@ class BoxingGloveTest < Test::Unit::TestCase
       assert_equal [0, 0, 0, 0, 0, 0, 0], BoxingGlove.weekly_total('pet', @today - 1)
       assert_equal [36000, 0, 0, 0, 0, 0, 36000], BoxingGlove.weekly_total('pet', @today)
     end
-
   end
 end
