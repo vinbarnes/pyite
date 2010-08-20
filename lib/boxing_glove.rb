@@ -11,4 +11,8 @@ class BoxingGlove < Punch
       daily_total(project, day)
     end
   end
+  
+  class << self
+    public :projects
+  end
 end
