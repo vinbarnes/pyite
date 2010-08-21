@@ -89,7 +89,7 @@ class BoxingGloveTest < Test::Unit::TestCase
     it 'returns a list of projects' do
       test_file = File.expand_path(File.dirname(__FILE__) + '/test_punch.yml')
       BoxingGlove.load(test_file)
-      assert_equal ['pet'], BoxingGlove.projects
+      assert_equal ['pet', 'pez'], BoxingGlove.projects.sort
     end
   end
 end
