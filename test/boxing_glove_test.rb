@@ -81,6 +81,38 @@ class BoxingGloveTest < Test::Unit::TestCase
     end
   end
 
+  it 'defines BoxingGlove.weekly_total' do
+    assert BoxingGlove.respond_to?(:weekly_total)
+  end
+
+  describe 'BoxingGlove.weekly_total' do
+    setup do
+      test_file = File.expand_path(File.dirname(__FILE__) + '/test_punch.yml')
+      BoxingGlove.load(test_file)
+      @today = Date.new(2010, 8, 2)
+    end
+    
+    it 'accepts a project argument' do
+      assert_nothing_raised { BoxingGlove.weekly_total('pet', Date.today) }
+    end
+
+    it 'accepts a date argument' do
+      assert_nothing_raised { BoxingGlove.weekly_total(nil, Date.today) }      
+    end
+    
+    it 'requires a project argument' do
+      assert_raises(ArgumentError) { BoxingGlove.weekly_total(Date.today) }
+    end
+
+    it 'requires a date argument' do
+      assert_raises(ArgumentError) { BoxingGlove.weekly_total('pet') }
+    end
+    
+    it 'returns the sum total of time worked that week' do
+      assert_equal 72000, BoxingGlove.weekly_total('pet', @today)
+    end
+  end
+
   it 'defines BoxingGlove.projects' do
     assert BoxingGlove.respond_to?(:projects)
   end

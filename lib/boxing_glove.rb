@@ -12,6 +12,10 @@ class BoxingGlove < Punch
     end
   end
   
+  def self.weekly_total(project, date)
+    total(project, :after => date.start_of_workweek.to_time, :before => (date.end_of_workweek + 1).to_time)
+  end
+
   class << self
     public :projects
   end
