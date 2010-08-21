@@ -6,7 +6,7 @@ class BoxingGlove < Punch
     total(project, :after => date.to_time, :before => (date + 1).to_time)
   end
   
-  def self.weekly_total(project, date)
+  def self.weekly_hours(project, date)
     (date.this_workweek).map do |day| 
       daily_total(project, day)
     end

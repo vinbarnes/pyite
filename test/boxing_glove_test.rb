@@ -48,11 +48,11 @@ class BoxingGloveTest < Test::Unit::TestCase
     end
   end
 
-  it 'defines BoxingGlove.weekly_total' do
-    assert BoxingGlove.respond_to?(:weekly_total)
+  it 'defines BoxingGlove.weekly_hours' do
+    assert BoxingGlove.respond_to?(:weekly_hours)
   end
 
-  describe 'BoxingGlove.weekly_total' do
+  describe 'BoxingGlove.weekly_hours' do
     setup do
       test_file = File.expand_path(File.dirname(__FILE__) + '/test_punch.yml')
       BoxingGlove.load(test_file)
@@ -60,24 +60,24 @@ class BoxingGloveTest < Test::Unit::TestCase
     end
     
     it 'accepts a project argument' do
-      assert_nothing_raised { BoxingGlove.weekly_total('pet', Date.today) }
+      assert_nothing_raised { BoxingGlove.weekly_hours('pet', Date.today) }
     end
     
     it 'accepts a date argument' do
-      assert_nothing_raised { BoxingGlove.weekly_total(nil, Date.today) }      
+      assert_nothing_raised { BoxingGlove.weekly_hours(nil, Date.today) }      
     end
     
     it 'requires a project argument' do
-      assert_raises(ArgumentError) { BoxingGlove.weekly_total(Date.today) }
+      assert_raises(ArgumentError) { BoxingGlove.weekly_hours(Date.today) }
     end
 
     it 'requires a date argument' do
-      assert_raises(ArgumentError) { BoxingGlove.weekly_total('pet') }
+      assert_raises(ArgumentError) { BoxingGlove.weekly_hours('pet') }
     end
     
     it 'returns a list of hours for each workday for the given project' do
-      assert_equal [0, 0, 0, 0, 0, 0, 0], BoxingGlove.weekly_total('pet', @today - 1)
-      assert_equal [36000, 0, 0, 0, 0, 0, 36000], BoxingGlove.weekly_total('pet', @today)
+      assert_equal [0, 0, 0, 0, 0, 0, 0], BoxingGlove.weekly_hours('pet', @today - 1)
+      assert_equal [36000, 0, 0, 0, 0, 0, 36000], BoxingGlove.weekly_hours('pet', @today)
     end
   end
 
